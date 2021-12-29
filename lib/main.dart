@@ -11,9 +11,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Yoga App',
+      title: 'Daily App',
       debugShowCheckedModeBanner: false,
       home:WelcomePage()
     );
   }
 }
+

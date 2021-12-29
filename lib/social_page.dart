@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import'delayed_animation.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart'
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import'login_page.dart';
+import 'main.dart';
+
 class SocialPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -27,7 +30,7 @@ class SocialPage extends StatelessWidget {
               delay: 1500,
               child: Container(
                 height: 280,
-                child: Image.asset('images/yoga_3.png'),
+                child: Image.asset('images/post8.jpg'),
               ),
             ),
             DelayedAnimation(
@@ -49,7 +52,7 @@ class SocialPage extends StatelessWidget {
                     ),
                     SizedBox(height: 10),
                     Text(
-                      "Save your progress to access your personal training program!",
+                      "Save your progress to access your personal account!",
                       textAlign: TextAlign.center,
                       style: GoogleFonts.poppins(
                         color: Colors.grey,

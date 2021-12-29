@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'delayed_animation.dart';
 import'social_page.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'main.dart';
 
 class WelcomePage extends StatelessWidget {
   @override
@@ -19,14 +21,14 @@ class WelcomePage extends StatelessWidget {
                 delay: 1500,
                 child: Container(
                   height: 170,
-                  child: Image.asset('images/post6.png'),
+                  child: Image.asset('images/post10.jpg'),
                 ),
               ),
               DelayedAnimation(
                 delay: 2500,
                 child: Container(
                   height: 400,
-                  child: Image.asset('images/post11.jpeg'),
+                  child: Image.asset('images/post11.jpg'),
                 ),
               ),
               DelayedAnimation(
@@ -37,9 +39,12 @@ class WelcomePage extends StatelessWidget {
                     bottom: 20,
                   ),
                   child: Text(
-                    "Get fitter, stronger, and embrasse a helthier lifestyle",
+                    "Daily is the best tool that organizes your projects into boards",
                     textAlign: TextAlign.center,
-
+                    style: GoogleFonts.poppins(
+                      color: Colors.grey,
+                      fontSize: 16,
+                    ),
                   ),
                 ),
               ),
@@ -49,7 +54,7 @@ class WelcomePage extends StatelessWidget {
                   width: double.infinity,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-
+                        primary: d_red,
                         shape: StadiumBorder(),
                         padding: EdgeInsets.all(13)),
                     child: Text('GET STARTED'),
