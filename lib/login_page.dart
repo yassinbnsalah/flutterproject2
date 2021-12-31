@@ -1,175 +1,183 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unrelated_type_equality_checks, avoid_print
+
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import'delayed_animation.dart';
-import 'main.dart';
-class LoginPage extends StatelessWidget {
+import'menu.dart';
+
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white.withOpacity(0),
-        leading: IconButton(
-          icon: Icon(
-            Icons.close,
-            color: Colors.black,
-            size: 30,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
+  _SignInPageState createState() => _SignInPageState();
+}
+
+class _SignInPageState extends State<LoginPage> {
+  final _emailcontroller = TextEditingController();
+  final _passwordcontroller = TextEditingController();
+  Widget _backButton() {
+    return InkWell(
+      onTap: () {
+        Navigator.pop(context);
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        child: Row(
+          children: <Widget>[
             Container(
-              margin: EdgeInsets.symmetric(
-                vertical: 40,
-                horizontal: 30,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  DelayedAnimation(
-                    delay: 1500,
-                    child: Text(
-                      "Connect email address",
-                      style: GoogleFonts.poppins(
-                        color: d_red,
-                        fontSize: 25,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 22),
-                  DelayedAnimation(
-                    delay: 2500,
-                    child: Text(
-                      "It's recommended to connect your email address for us to better protect your information.",
-                      style: GoogleFonts.poppins(
-                        color: Colors.grey[600],
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 35),
-            LoginForm(),
-            SizedBox(height: 125),
-            DelayedAnimation(
-              delay: 5500,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  shape: StadiumBorder(),
-                  primary: d_red,
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 125,
-                    vertical: 13,
-                  ),
-                ),
-                child: Text(
-                  'CONFIRM',
-                  style: GoogleFonts.poppins(
-                    color: Colors.white,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MyApp(),
-                    ),
-                  );
-                },
-              ),
-            ),
-            SizedBox(height: 90),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Padding(
-                padding: EdgeInsets.only(right: 35),
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: DelayedAnimation(
-                    delay: 6500,
-                    child: Text(
-                      "SKIP",
-                      style: GoogleFonts.poppins(
-                        color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              padding: EdgeInsets.only(left: 0, top: 20, bottom: 10),
+              child: Icon(Icons.keyboard_arrow_left, color: Colors.white),
             ),
           ],
         ),
       ),
     );
   }
-}
 
-class LoginForm extends StatefulWidget {
-  @override
-  _LoginFormState createState() => _LoginFormState();
-}
+  Widget _usernameWidget() {
+    return Stack(
+      children: [
+        TextFormField(
+          keyboardType: TextInputType.name,
+          textInputAction: TextInputAction.next,
+          controller: _emailcontroller,
+          decoration: InputDecoration(
+            labelText: 'Email',
+            labelStyle: TextStyle(
+                color: Color.fromRGBO(173, 183, 192, 1),
+                fontWeight: FontWeight.bold),
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Color.fromRGBO(173, 183, 192, 1)),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
 
-class _LoginFormState extends State<LoginForm> {
-  var _obscureText = true;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(
-        horizontal: 30,
-      ),
-      child: Column(
-        children: [
-          DelayedAnimation(
-            delay: 3500,
-            child: TextField(
-              decoration: InputDecoration(
-                labelText: 'Your Email',
-                labelStyle: TextStyle(
-                  color: Colors.grey[400],
-                ),
+  Widget _passwordWidget() {
+    return Stack(
+      children: [
+        TextFormField(
+          keyboardType: TextInputType.name,
+          textInputAction: TextInputAction.next,
+          controller: _passwordcontroller,
+          decoration: InputDecoration(
+            labelText: 'Password',
+            labelStyle: TextStyle(
+                color: Color.fromRGBO(173, 183, 192, 1),
+                fontWeight: FontWeight.bold),
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Color.fromRGBO(173, 183, 192, 1)),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _submitButton() {
+    return Align(
+      alignment: Alignment.centerRight,
+      child: InkWell(
+        onTap: () {
+          if (_emailcontroller.text == 'admin' &&
+              _passwordcontroller.text == '12345678') {
+            print("login success");
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => menu()));
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text("password or email incorrect"),
+            ));
+          }
+        },
+        child:
+        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          Text(
+            'Sign in',
+            style: TextStyle(
+                color: Color.fromRGBO(76, 81, 93, 1),
+                fontSize: 25,
+                fontWeight: FontWeight.w500,
+                height: 1.6),
+          ),
+          SizedBox.fromSize(
+            size: Size.square(70.0), // button width and height
+            child: ClipOval(
+              child: Material(
+                color: Color.fromRGBO(76, 81, 93, 1),
+
+                child: Icon(
+                  Icons.arrow_forward,
+                  color: Colors.white,
+                ), // button color
               ),
             ),
           ),
-          SizedBox(height: 30),
-          DelayedAnimation(
-            delay: 4500,
-            child: TextField(
-              obscureText: _obscureText,
-              decoration: InputDecoration(
-                labelStyle: TextStyle(
-                  color: Colors.grey[400],
-                ),
-                labelText: 'Password',
-                suffixIcon: IconButton(
-                  icon: Icon(
-                    Icons.visibility,
-                    color: Colors.black,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      _obscureText = !_obscureText;
-                    });
-                  },
-                ),
-              ),
+        ]),
+      ),
+    );
+  }
+
+  Widget _createAccountLabel() {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 20),
+      alignment: Alignment.bottomCenter,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          InkWell(
+            // onTap: () {
+            //   // Navigator.push(
+            //   //     context, MaterialPageRoute(builder: (context) => SignUpPage()));
+            // },
+            child: Text(
+              'Forgot Password',
+              style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  decoration: TextDecoration.underline,
+                  decorationThickness: 2),
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    return Scaffold(
+      body: SizedBox(
+        height: height,
+        child: Stack(
+          children: [
+            Positioned(
+                height: MediaQuery.of(context).size.height * 0.50,
+                child: Image.network(
+                    'https://wallpapercave.com/wp/wp4667228.jpg')),
+            SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                      children: [
+                        SizedBox(height: height * .55),
+                        _usernameWidget(),
+                        SizedBox(height: 20),
+                        _passwordWidget(),
+                        SizedBox(height: 30),
+                        _submitButton(),
+                        SizedBox(height: height * .050),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

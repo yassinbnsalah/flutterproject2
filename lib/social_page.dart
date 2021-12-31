@@ -175,6 +175,7 @@ class SocialPage extends StatelessWidget {
           ],
         ),
       ),
+
     );
   }
 }
