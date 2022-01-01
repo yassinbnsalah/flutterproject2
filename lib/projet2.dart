@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import './books_list.dart';
 import './book.dart';
 
-
-
 class projet2 extends StatelessWidget {
   const projet2({Key? key}) : super(key: key);
 
@@ -16,7 +14,7 @@ class projet2 extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Luxury cars gallery'),
+      home: const MyHomePage(title: 'Luxury cars gallerys'),
     );
   }
 }
@@ -31,7 +29,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   final _books = books;
   @override
   Widget build(BuildContext context) {
@@ -40,7 +37,8 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2),
           itemCount: _books.length,
           itemBuilder: (context, index) {
             Book book = _books[index];
@@ -58,8 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          fontSize: 20
-                      ),
+                          fontSize: 20),
                       textAlign: TextAlign.start,
                     ),
                     Text(
@@ -70,8 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             );
-          }
-      ),
+          }),
     );
   }
 }
